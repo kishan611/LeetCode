@@ -1,9 +1,8 @@
-import sys
 class MinStack:
 
     def __init__(self):
         self.s=[]
-        self.min=sys.maxsize
+        self.min=2147483647
         
 
     def push(self, val: int) -> None:
@@ -16,7 +15,7 @@ class MinStack:
         if self.s:
             self.min=self.s[-1][1]
         else:
-            self.min=sys.maxsize
+            self.min=2147483647
 
     def top(self) -> int:
         return self.s[-1][0]
