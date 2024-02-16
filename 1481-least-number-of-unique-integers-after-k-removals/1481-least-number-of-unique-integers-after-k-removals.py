@@ -4,13 +4,11 @@ class Solution:
         for i in arr:
             d[i]=d.get(i,0)+1
         d=dict(sorted(d.items(),key= lambda item:item[1]))
-        b=1
-        count=0
-        ans=0
+        ans=len(d)
         for i ,j in d.items():
-            if b and count+j<=k:
-                count+=j
+            if j<=k:
+                k-=j
+                ans-=1
             else:
-                b=0
-                ans+=1
+                break
         return ans
