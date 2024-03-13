@@ -1,16 +1,12 @@
 class Solution:
     def pivotInteger(self, n: int) -> int:
-        i=1
-        j=n
-        curre=n
-        while i<=j:
-            if curre>=i:
-                curre-=i
-                i+=1
-            else:
-                j-=1
-                curre+=j
-        if curre==0:
-            return j
+        if n==1:
+            return 1
+        s=(n*(n+1))//2
+        curr=1
+        for i in range(2,n):
+            curr+=i
+            z=s-curr+i
+            if z==curr:
+                return i
         return -1
-        
