@@ -6,17 +6,17 @@
 class Solution:
     def mergeInBetween(self, list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
         curr=list1
-        l=1
-        while l<a:
+        b-=a
+        while a>1:
             curr=curr.next
-            l+=1
+            a-=1
         curr2=curr.next
         curr.next=list2
         while curr.next:
             curr=curr.next
-        while l<b:
+        while b>0:
             curr2=curr2.next
-            l+=1
+            b-=1
         curr.next=curr2.next
         return list1
             
