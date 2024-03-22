@@ -4,24 +4,18 @@ class Solution:
         ans=-1
         for i in tokens:
             if i=="+":
-                ans=int(s.pop())+int(s.pop())
-                s.append(ans)
+                s.append(s.pop()+s.pop())
             elif i=="*":
-                ans=int(s.pop())*int(s.pop())
-                s.append(ans)
+                s.append(s.pop()*s.pop())
             elif i=="-" or i=='/':
-                a=int(s.pop())
-                b=int(s.pop())
+                a=s.pop()
+                b=s.pop()
                 if i=='-':
                     s.append(b-a)
                 else:
-                    c=b//a
-                    if c<0 and b%a!=0:
-                        s.append(c+1)
-                    else:
-                        s.append(c)
+                    s.append(int(b/a))
             else:
-                s.append(i)
-        return int(s[0])
+                s.append(int(i))
+        return s[0]
                 
         
