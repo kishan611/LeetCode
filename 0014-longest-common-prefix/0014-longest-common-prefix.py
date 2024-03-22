@@ -8,5 +8,7 @@ class Solution:
                     break
                 j+=1
             curr=curr[:j]
+            if curr=="":
+                return ""
         return curr
         
