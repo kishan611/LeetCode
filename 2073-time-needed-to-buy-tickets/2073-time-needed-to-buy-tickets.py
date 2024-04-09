@@ -2,11 +2,15 @@ class Solution:
     def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
         n=len(tickets)
         nt=tickets[k]
-        count=nt*(k+1)+(n-k-1)*(nt-1)
+        count=nt
         for i in tickets[:k]:
             if i<nt:
-                count-=(nt-i)
+                count+=i
+            else:
+                count+=nt
         for i in tickets[k+1:]:
             if i<(nt-1):
-                count-=(nt-1-i)
+                count+=i
+            else:
+                count+=nt-1
         return count
