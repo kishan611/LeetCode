@@ -5,19 +5,17 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
-        q=[(root,False)]
-        s=0
-        while q:
-            r,ls=q.pop(0)
-            if ls and not r.left and not r.right:
-                s+=r.val
-            if r.left:
-                q.append((r.left,True))
-            if r.right:
-                q.append((r.right,False))
-        return s
-            
-                
-            
+    def __init__(self):
+        self.res=0
+    def sub(self,root):
+        if not root:
+            return 
+        if root.left:
+            if not root.left.left and not root.left.right:
+                self.res+=root.left.val
+        self.sub(root.left)
+        self.sub(root.right)
         
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        self.sub(root)
+        return self.res
