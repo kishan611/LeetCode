@@ -1,13 +1,13 @@
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        if sum(gas)<sum(cost):
+        i=0
+        curr,low=0,0
+        for j,(g,c) in enumerate(zip(gas,cost)):
+            if curr<low:
+                i=j
+                low=curr
+            curr+=g-c
+        if curr<0:
             return -1
-        curr=0
-        reqIndex=0
-        for i in range(len(gas)):
-            curr+=gas[i]-cost[i]
-            if curr<0:
-                curr=0
-                reqIndex=i+1
-        return reqIndex
+        return i
         
