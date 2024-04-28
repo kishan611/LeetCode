@@ -1,12 +1,18 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        x=""
-        for i in s:
-            if i.isalnum():
-                if i.isalpha():
-                    x+=i.lower()
+        i=0
+        j=len(s)-1
+        while i<j:
+            if s[i].isalnum() and s[j].isalnum():
+                if s[i].lower()!=s[j].lower():
+                    return False
+                i+=1
+                j-=1
+            else:
+                if s[i].isalnum():
+                    j-=1
                 else:
-                    x+=i
-        if x==x[::-1]:
+                    i+=1
+        if i==j or i==j+1:
             return True
         return False
