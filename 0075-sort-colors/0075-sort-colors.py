@@ -3,10 +3,14 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        a=Counter(nums)
-        z=a.get(0,0)
-        o=a.get(1,0)
-        t=a.get(2,0)
+        z=o=t=0
+        for i in nums:
+            if i==0:
+                z+=1
+            elif i==1:
+                o+=1
+            else:
+                t+=1
         for i in range(z):
             nums[i]=0
         for i in range(z,z+o):
