@@ -3,18 +3,14 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        z=o=t=0
-        for i in nums:
-            if i==0:
-                z+=1
-            elif i==1:
-                o+=1
+        s,m,e=0,0,len(nums)-1
+        while m<=e:
+            if nums[m]==0:
+                nums[s],nums[m]=nums[m],nums[s]
+                s+=1
+                m+=1
+            elif nums[m]==1:
+                m+=1
             else:
-                t+=1
-        for i in range(z):
-            nums[i]=0
-        for i in range(z,z+o):
-            nums[i]=1
-        for i in range(z+o,z+o+t):
-            nums[i]=2
-        
+                nums[e],nums[m]=nums[m],nums[e]
+                e-=1
