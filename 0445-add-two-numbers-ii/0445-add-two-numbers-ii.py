@@ -6,6 +6,8 @@
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         def reverse(lnk):
+            if not lnk or not lnk.next:
+                return lnk
             prev=None
             temp=lnk
             while temp:
@@ -17,34 +19,18 @@ class Solution:
         l1=reverse(l1)
         l2=reverse(l2)
         c=0
-        temp=l1
-        while l1.next and l2.next:
-            x=l1.val+l2.val+c
-            l1.val=x%10
-            c=x//10
-            l1=l1.next
-            l2=l2.next
-        x=l1.val+l2.val+c
-        l1.val=x%10
-        c=x//10
-        if l2.next:
-            l1.next=l2.next
-        if c and not l1.next:
-            l1.next=ListNode(c)
-            l1=l1.next
-        l1=l1.next
-        if l1:
-            while l1.next:
-                x=l1.val+c
-                l1.val=x%10
-                c=x//10
+        dummy=ListNode()
+        temp=dummy
+        while l1 or l2 or c:
+            x=l1.val if l1 else 0
+            y=l2.val if l2 else 0
+            s=x+y+c
+            temp.next=ListNode(s%10)
+            c=s//10
+            temp=temp.next
+            if l1:
                 l1=l1.next
-            x=l1.val+c
-            l1.val=x%10
-            c=x//10
-            if c:
-                l1.next=ListNode(c)
-        return reverse(temp)
-            
-                
+            if l2:
+                l2=l2.next
+        return reverse(dummy.next)
         
