@@ -5,17 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def calculate(self,root):
         if not root:
-            return None
-        curr,val,s=root,0,[]
-        while curr or s:
-            while curr:
-                s.append(curr)
-                curr=curr.right
-            curr=s.pop()
-            val+=curr.val
-            curr.val=val
-            curr=curr.left
+            return 
+        self.calculate(root.right)
+        root.val+=self.total
+        self.total=root.val
+        self.calculate(root.left)
+    def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        self.total=0
+        self.calculate(root)
         return root
         
