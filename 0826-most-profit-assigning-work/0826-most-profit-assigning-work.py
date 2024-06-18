@@ -10,5 +10,7 @@ class Solution:
             while j<n and i[1]<=worker[j]:
                 res+=i[0]
                 j+=1
+            if j==n:
+                break
         return res
         
