@@ -1,15 +1,22 @@
 class Solution:
     def getAncestors(self, n: int, edges: List[List[int]]) -> List[List[int]]:
-        res=[set() for i in range(n)]
+        inc=[0]*n
+        g=defaultdict(list)
+        a=[set() for _ in range(n)]
         for i,j in edges:
-            res[j].add(i)
+            g[i].append(j)
+            a[j].add(i)
+            inc[j]+=1
+        q=[]
         for i in range(n):
-            s=res[i].copy()
-            while s:
-                x=s.pop()
-                for j in res[x]:
-                    if j not in res[i]:
-                        res[i].add(j)
-                        s.add(j)
-        return [sorted(list(i)) for i in res]
-                
+            if not a[i]:
+                q.append(i)
+        while q:
+            node=q.pop()
+            for adj in g[node]:
+                a[adj].update(a[node])
+                inc[adj]-=1
+                if not inc[adj]:
+                    q.append(adj)
+        return [sorted(i) for i in a]
+        
