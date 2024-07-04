@@ -14,7 +14,6 @@ class Solution:
                 curr=curr.next
             else:
                 curr.next=None
-                break
         return head
         
             
