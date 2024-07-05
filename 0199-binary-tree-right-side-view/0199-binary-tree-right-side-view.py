@@ -11,15 +11,16 @@ class Solution:
         q=[root]
         res=[]
         while q:
-            res.append(q[-1].val)
-            x=[]
-            while q:
+            level=[]
+            for i in range(len(q)):
                 node=q.pop(0)
+                level.append(node.val)
                 if node.left:
-                    x.append(node.left)
+                    q.append(node.left)
                 if node.right:
-                    x.append(node.right)
-            q=x[::]
+                    q.append(node.right)
+            if level!=[]:
+                res.append(level[-1])
         return res
                 
                 
