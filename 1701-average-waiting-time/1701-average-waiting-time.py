@@ -1,14 +1,14 @@
 class Solution:
     def averageWaitingTime(self, customers: List[List[int]]) -> float:
-        tot=customers[0][1]
-        start=customers[0][0]+tot
-        for i,j in customers[1::]:
-            if start>i:
-                tot+=start-i
-                start+=j
-            else:
+        tot=0
+        start=0
+        for i,j in customers:
+            if start<=i:
                 start=i+j
-            tot+=j
+                tot+=j
+            else:
+                start+=j
+                tot+=(start-i)
         return tot/(len(customers))
             
             
