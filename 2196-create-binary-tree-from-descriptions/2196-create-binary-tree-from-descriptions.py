@@ -6,24 +6,20 @@
 #         self.right = right
 class Solution:
     def createBinaryTree(self, descriptions: List[List[int]]) -> Optional[TreeNode]:
-        seen={}
         parent={}
-        node={}
-        root=-1
+        child=set()
         for p,c,l in descriptions:
-            if not seen.get(p,0):
-                node[p]=TreeNode(p)
-                seen[p]=1
-                if not parent.get(p,0):
-                    root = p
-            if not seen.get(c,0):
-                node[c]=TreeNode(c)
-                seen[c]=1
-            parent[c]=p
+            child.add(c)
+            if p not in parent:
+                parent[p]=TreeNode(p)
+            p=parent[p]
+            if c not in parent:
+                parent[c]=TreeNode(c)
+            c=parent[c]
             if l:
-                node[p].left=node[c]
+                p.left=c
             else:
-                node[p].right=node[c]
-        while parent.get(root,0):
-            root=parent[root]
-        return node[root]
+                p.right=c
+        for i,j,k in descriptions:
+            if i not in child:
+                return parent[i]
