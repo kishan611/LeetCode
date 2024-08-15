@@ -1,5 +1,7 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        if len(ransomNote)>len(magazine):
+            return False
         d={}
         for i in magazine:
             d[i]=d.get(i,0)+1
