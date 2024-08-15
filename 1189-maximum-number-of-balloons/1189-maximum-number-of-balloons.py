@@ -4,4 +4,6 @@ class Solution:
         for i in text:
             if i in d:
                 d[i]+=1
-        return min(min(d.values()),min(d['l'],d['o'])//2)
+        d['l']//=2
+        d['o']//=2
+        return min(d.values())
