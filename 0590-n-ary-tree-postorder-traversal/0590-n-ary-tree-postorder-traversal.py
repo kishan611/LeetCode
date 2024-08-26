@@ -9,19 +9,14 @@ class Node:
 class Solution:
     def postorder(self, root: 'Node') -> List[int]:
         res=[]
-        if not root:
-            return res
-        s=[root]
-        while s:
-            vertex=s.pop()
-            if vertex.children:
-                s.append(vertex)
-                for i in vertex.children[::-1]:
-                    s.append(i)
-                vertex.children=[]
-            else:
-                res.append(vertex.val)
+        def dfs(node):
+            if node:
+                for i in node.children:
+                    dfs(i)
+                res.append(node.val)
+        dfs(root)
         return res
+        
             
         
         
