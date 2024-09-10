@@ -1,4 +1,3 @@
-from math import gcd
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -8,8 +7,10 @@ class Solution:
     def insertGreatestCommonDivisors(self, head: Optional[ListNode]) -> Optional[ListNode]:
         curr=head
         while curr.next:
-             n=ListNode(gcd(curr.val,curr.next.val))
-             n.next=curr.next
-             curr.next=n
-             curr=n.next
+            x=ListNode(math.gcd(curr.val,curr.next.val),curr.next)
+            curr.next=x
+            curr=x.next
         return head
+            
+            
+        
