@@ -9,6 +9,8 @@ class Solution:
         for i in range(n-1,-1,-1):
             while s and nums[s[-1]]<=nums[i]:
                 res=max(i-s.pop(),res)
+            if not s:
+                break
         return res
 
             
