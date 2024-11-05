@@ -1,9 +1,4 @@
 class Solution:
     def minChanges(self, s: str) -> int:
-        n=len(s)
-        c=0
-        for i in range(0,n,2):
-            if s[i]!=s[i+1]:
-                c+=1
-        return c
+        return sum(s[i]!=s[i+1] for i in range(0,len(s),2))
         
