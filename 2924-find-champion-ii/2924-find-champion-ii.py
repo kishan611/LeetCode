@@ -1,12 +1,12 @@
 class Solution:
     def findChampion(self, n: int, edges: List[List[int]]) -> int:
-        res=[-1]*n
+        res=[True]*n
         for i,j in edges:
-            res[j]=i
+            res[j]=False
         flag=0
         ans=-1
         for i in range(n):
-            if res[i]==-1:
+            if res[i]:
                 if flag:
                     return -1
                 flag=1
