@@ -3,9 +3,8 @@ class Solution:
         res=""
         j=0
         for i in spaces:
-            while j<i:
-                res+=s[j]
-                j+=1
+            res+=s[j:i]
             res+=" "
+            j=i
         res+=s[j:]
         return res
