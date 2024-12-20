@@ -7,24 +7,14 @@ from collections import deque
 #         self.right = right
 class Solution:
     def reverseOddLevels(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        q=deque([root])
-        k=1
-        while q:
-            temp=[]
-            while q:
-                x=q.popleft()
-                if x.left:
-                    temp.append(x.left)
-                    temp.append(x.right)
-            if k:
-                n=len(temp)
-                for i in range(n//2):
-                    temp[i].val,temp[n-i-1].val=temp[n-i-1].val,temp[i].val
-                k=0
-            else:
-                k=1
-            q=deque(temp[:])
+        if root is None:
+            return 
+        def travel(left,right,level):
+            if not left or not right:
+                return 
+            if level%2!=0:
+                left.val,right.val=right.val,left.val
+            travel(left.left,right.right,level+1)
+            travel(left.right,right.left,level+1)
+        travel(root.left,root.right,1)
         return root
-                
-            
-        
