@@ -8,22 +8,20 @@ class Solution:
     def largestValues(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
-        res=[root.val]
+        res=[]
         q=[root]
         while q:
             temp=[]
             ans=float("-inf")
             while q:
                 x=q.pop()
+                ans=max(ans,x.val)
                 if x.left:
                     temp.append(x.left)
-                    ans=max(ans,x.left.val)
                 if x.right:
                     temp.append(x.right)
-                    ans=max(ans,x.right.val)
             res.append(ans)
             q=temp[:]
-        res.pop()
         return res
                 
         
